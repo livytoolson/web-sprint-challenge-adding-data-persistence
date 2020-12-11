@@ -28,16 +28,6 @@ router.get('/', (req, res) => {
       })
   })
 
-// router.get('/', (req, res) => {
-//     Projects.getAll()
-//     .then(projects => {
-//         res.json(projects);
-//     })
-//     .catch(error => {
-//         res.status(500).json({ message: error.message })
-//     });
-// });
-
 // router.post('/', validateProject, async (req, res) => {
 //   try {
 //     const newProject = await Projects.add(req.body)

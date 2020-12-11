@@ -6,13 +6,16 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     Tasks.getAll()
-    .then(tasks => {
-        res.json(tasks);
-    })
-    .catch(error => {
-        res.status(500).json({ message: error.message })
-    });
-});
+      .then(projects => {
+        projects.forEach(task => {
+          task.completed = Boolean(task.completed)
+        })
+        res.json(projects);
+      })
+      .catch(e => {
+        res.status(500).json({ message: e.message });
+      })
+  })
 
 router.post('/', (req, res) => {
     const resourceData = req.body
