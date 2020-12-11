@@ -6,13 +6,13 @@ module.exports = {
 }
 
 function getAll() {
-    return db('')
+    return db('projects')
 }
 
 function add(project) {
-    return db('')
+    return db('projects')
     .insert(project)
     .then((id) => {
-        return db('').where({ id }).first()
+        return db('projects').where('project_id', id).first()
     })
 }
