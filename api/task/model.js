@@ -7,7 +7,7 @@ module.exports = {
 
 function getAll() {
     return db('tasks')
-    .select('projects.name', 'projects.description', 'tasks.description', 'tasks.notes', 'tasks.completed')
+    .select('projects.name', 'projects.description')
     .join('projects', 'tasks.project_id', 'projects.project_id')
 }
 
