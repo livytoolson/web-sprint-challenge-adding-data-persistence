@@ -6,11 +6,11 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     Tasks.getAll()
-      .then(projects => {
-        projects.forEach(task => {
+      .then(tasks => {
+        tasks.forEach(task => {
           task.completed = Boolean(task.completed)
         })
-        res.json(projects);
+        res.json(tasks);
       })
       .catch(e => {
         res.status(500).json({ message: e.message });
