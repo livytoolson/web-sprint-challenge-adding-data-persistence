@@ -41,7 +41,7 @@ router.post('/', validateProject, async (req, res) => {
 //   Projects.add(req.body)
 //     .then(project => {
 //       project[0].completed = Boolean(project[0].completed)
-//       res.json(project);
+//       res.json(project[0]);
 //     })
 //     .catch(error => {
 //       res.status(500).json({ message: error.message });
