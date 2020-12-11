@@ -6,13 +6,13 @@ module.exports = {
 }
 
 function getAll() {
-    return db('')
+    return db('resources')
 }
 
 function add(resource) {
-    return db('')
+    return db('resources')
     .insert(resource)
     .then((id) => {
-        return db('').where({ id }).first()
+        return db('resources').where('resource_id', id).first()
     })
 }
