@@ -26,16 +26,13 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', validateResource, (req, res) => {
-    const resourceData = req.body
-
-    Resources.add(resourceData)
-    .then(resource => {
-        res.json(resource)
-    })
-    .catch(error => {
-        res.status(500).json({ message: error.message })
-    });
+router.post('/', validateResource, async (req, res) => {
+  try {
+    const newResource = await Resources.add(req.body)
+    res.status(201).json(newResource)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
 });
 
 module.exports = router;
