@@ -2,6 +2,8 @@ const express = require('express')
 
 const Tasks = require('./model');
 
+const { validateTask } = require('../middlewares/project-middleware');
+
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -17,16 +19,14 @@ router.get('/', (req, res) => {
       })
   })
 
-router.post('/', (req, res) => {
-    const resourceData = req.body
-
-    Tasks.add(resourceData)
-    .then(resource => {
-        res.status(201).json(resource)
-    })
-    .catch(error => {
-        res.status(500).json({ message: error.message })
-    });
+router.post('/', validateTask, async (req, res) => {
+  try {
+    // need to convert boolean
+    const newTask = await Tasks.add(req.body)
+    res.status(201).json(newTask)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
 });
 
 module.exports = router;
